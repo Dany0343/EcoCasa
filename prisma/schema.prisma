@@ -9,11 +9,11 @@ datasource db {
 
 model User {
   id                Int       @id @default(autoincrement())
-  name              String
+  username          String    @unique
   email             String    @unique
   password          String
   registrationDate  DateTime  @default(now())
-  role              String
+  role              String?
   properties        Property[]
   reviews           Review[]
   favorites         Favorite[]
