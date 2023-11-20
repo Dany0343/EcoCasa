@@ -1,0 +1,81 @@
+generator client {  
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+model User {
+  id                Int       @id @default(autoincrement())
+  name              String
+  email             String    @unique
+  password          String
+  registrationDate  DateTime  @default(now())
+  role              String
+  properties        Property[]
+  reviews           Review[]
+  favorites         Favorite[]
+  sentMessages      Message[] @relation("messageSender")
+  receivedMessages  Message[] @relation("messageReceiver")
+}
+
+model Property {
+  id           Int       @id @default(autoincrement())
+  title        String
+  description  String
+  price        Float
+  location     String
+  propertyType String
+  bedrooms     Int
+  bathrooms    Int
+  area         Float
+  availability Boolean
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  reviews      Review[]
+  images       Image[]
+  favorites    Favorite[]
+  messages     Message[]
+}
+
+model Review {
+  id          Int      @id @default(autoincrement())
+  propertyId  Int
+  userId      Int
+  score       Int
+  comment     String
+  date        DateTime @default(now())
+  property    Property @relation(fields: [propertyId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Image {
+  id          Int      @id @default(autoincrement())
+  propertyId  Int
+  url         String   // URL de la imagen almacenada en el blob de Vercel
+  description String
+  property    Property @relation(fields: [propertyId], references: [id])
+}
+
+model Favorite {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  propertyId Int
+  addedDate  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  property   Property @relation(fields: [propertyId], references: [id])
+}
+
+model Message {
+  id           Int      @id @default(autoincrement())
+  senderId     Int
+  receiverId   Int
+  propertyId   Int?
+  content      String
+  sentDate     DateTime @default(now())
+  sender       User     @relation("messageSender", fields: [senderId], references: [id])
+  receiver     User     @relation("messageReceiver", fields: [receiverId], references: [id])
+  property     Property? @relation(fields: [propertyId], references: [id])
+}
