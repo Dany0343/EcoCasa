@@ -1,7 +1,6 @@
-// pages/api/auth/[...nextauth].js
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import db from "@/libs/db"; // Asegúrate de que la ruta a tu base de datos es correcta
+import db from "@/libs/db"; 
 import bcrypt from "bcrypt";
 
 export default NextAuth({
