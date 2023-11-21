@@ -1,48 +1,46 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import db from "@/libs/db"; 
-import bcrypt from "bcrypt";
+import db from '@/libs/db'
+import bcrypt from 'bcrypt'
 
-export default NextAuth({
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "jsmith@example.com" },
-        password: { label: "Password", type: "password" },
+        email: { label: "Email", type: "text", placeholder: "jsmith" },
+        password: { label: "Password", type: "password", placeholder: "*****" },
       },
       async authorize(credentials, req) {
-        // Aquí colocas tu lógica para encontrar al usuario y validar su contraseña
+        console.log(credentials)
+
         const userFound = await db.user.findUnique({
-          where: {
-            email: credentials.email,
-          },
-        });
+            where: {
+                email: credentials.email
+            }
+        })
 
-        if (!userFound) {
-          throw new Error("No user found");
-        }
+        if (!userFound) throw new Error('No user found')
 
-        const matchPassword = await bcrypt.compare(
-          credentials.password,
-          userFound.password
-        );
+        console.log(userFound)
 
-        if (!matchPassword) {
-          throw new Error("Wrong password");
-        }
+        const matchPassword = await bcrypt.compare(credentials.password, userFound.password)
 
-        // Retorna un objeto usuario si la autenticación es exitosa
+        if (!matchPassword) throw new Error('Wrong password')
+
         return {
-          id: userFound.id,
-          name: userFound.username, // Asegúrate de que el campo 'username' exista en tu modelo de usuario
-          email: userFound.email,
-        };
+            id: userFound.id,
+            name: userFound.username,
+            email: userFound.email,
+        }
       },
     }),
   ],
   pages: {
-    signIn: "/auth/login", // Asegúrate de tener esta ruta en tu aplicación
-  },
-  // Aquí puedes agregar más configuraciones como callbacks, session, etc.
-});
+    signIn: "/auth/login",
+  }
+};
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
