@@ -13,7 +13,7 @@ function LoginPage() {
 
   const router = useRouter();
 
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   const onSubmit = handleSubmit(async (data) => {
     const res = await signIn("credentials", {
