@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import db from "@/libs/db"; 
 import bcrypt from "bcrypt";
 
-export default NextAuth({
+NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
