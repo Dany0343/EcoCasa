@@ -1,5 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 function RegisterPage() {
   const {
@@ -8,8 +9,10 @@ function RegisterPage() {
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
+
   const onSubmit = handleSubmit(async (data) => {
-    if (data.password == !data.confirmPassword) {
+    if (data.password !== data.confirmPassword) {
       return alert("Las contraseñas no coinciden");
     }
 
@@ -24,7 +27,10 @@ function RegisterPage() {
         "Content-Type": "application/json",
       },
     });
-    const resJSON = await res.json();
+
+    if (res.ok) {
+      router.push("/auth/login");
+    }
   });
 
   return (
