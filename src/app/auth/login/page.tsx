@@ -22,7 +22,7 @@ function LoginPage() {
       redirect: false,
     });
 
-    if (res.error) {
+    if (res && res.error) {
       setError(res.error);
     } else {
       router.push("/");
