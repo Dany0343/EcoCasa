@@ -6,27 +6,35 @@ async function Navbar() {
 
   return (
     <nav className="flex justify-between items-center text-black px-24 py-3">
-      <Link href={"/"}><h1 className="text-xl front-bold">EcoCasa</h1></Link>
-      <ul className="flex gap-x-2">
+      <Link href={"/"}>
+        <h1 className="text-xl font-semibold">EcoCasa</h1>
+      </Link>
+      <ul className="flex gap-x-6">
         {!session?.user ? (
           <>
             <li>
-              <Link href={"/"}>Home</Link>
+              <Link className="font-semibold" href={"/"}>
+                Home
+              </Link>
             </li>
             <li>
-              <Link href={"/auth/login"}>Login</Link>
+              <Link className="font-semibold" href={"/auth/login"}>
+                Iniciar Sesión
+              </Link>
             </li>
             <li>
-              <Link href={"/auth/register"}>Register</Link>
+              <Link className="font-semibold" href={"/auth/register"}>
+                Registrarse
+              </Link>
             </li>
           </>
         ) : (
           <>
             <li>
-              <Link href={"/"}>Home Page</Link>
+              <Link className="font-semibold" href={"/"}>Home Page</Link>
             </li>
             <li>
-              <Link href={"/api/auth/signout"}>Logout</Link>
+              <Link className="font-semibold" href={"/api/auth/signout"}>Logout</Link>
             </li>
           </>
         )}
