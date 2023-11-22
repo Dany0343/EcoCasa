@@ -6,7 +6,7 @@ async function Navbar() {
 
   return (
     <nav className="flex justify-between items-center text-black px-24 py-3">
-      <h1 className="text-xl front-bold">EcoCasa</h1>
+      <Link href={"/"}><h1 className="text-xl front-bold">EcoCasa</h1></Link>
       <ul className="flex gap-x-2">
         {!session?.user ? (
           <>
