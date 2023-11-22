@@ -28,6 +28,7 @@ function LoginPage() {
       setError(res.error);
     } else {
       router.push("/");
+      router.refresh();
     }
   });
 

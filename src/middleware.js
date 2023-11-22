@@ -1,4 +1,4 @@
 export { default } from "next-auth/middleware";
 
-
-export const config = {matcher: ["/"]}
+// Se protejen todas las rutas despues de /
+export const config = {matcher: ["/:path*"]}
