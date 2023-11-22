@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Image from "next/image";
+import Logo from "../../../../public/ecocasa.png"
 
 function LoginPage() {
   const {
@@ -33,7 +35,11 @@ function LoginPage() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <div className="bg-white shadow-md rounded-lg max-w-md w-full mx-auto p-8">
         <div className="flex justify-center mb-8">
-          <img className="h-12 w-auto" src="path_to_your_logo.png" alt="Logo" />
+          <Image src="/ecocasa.png"
+          width={200}
+          height={200}
+          alt="Companys logo"
+          />
         </div>
 
         <form onSubmit={onSubmit}>

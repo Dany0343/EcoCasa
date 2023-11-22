@@ -1,6 +1,8 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Logo from "../../../../public/ecocasa.png";
 
 function RegisterPage() {
   const {
@@ -39,7 +41,11 @@ function RegisterPage() {
       <div className="bg-white shadow-md rounded-lg max-w-md w-full mx-auto p-8">
         {/* Logo y título */}
         <div className="flex justify-center mb-8">
-          <img className="h-12 w-auto" src="path_to_your_logo.png" alt="Logo" />
+        <Image src="../../../../public/ecocasa.png"
+          width={200}
+          height={200}
+          alt="Companys logo"
+          />
         </div>
 
         {/* Formulario de registro */}
