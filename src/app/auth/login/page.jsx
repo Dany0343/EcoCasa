@@ -34,18 +34,20 @@ function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4 lg:flex-row lg:m-0 lg:gap-36 lg:justify-center">
       <div className="hidden lg:block">
-      <Image src="/ecocasa_stock1.png"
+        <Image
+          src="/ecocasa_stock1.png"
           width={550}
           height={550}
           alt="Companys image of housing"
-          />
+        />
       </div>
       <div className="bg-white shadow-md rounded-lg max-w-md w-full mx-auto p-8 lg:m-0">
         <div className="flex justify-center mb-8">
-          <Image src="/ecocasa.png"
-          width={200}
-          height={200}
-          alt="Companys logo"
+          <Image
+            src="/ecocasa.png"
+            width={200}
+            height={200}
+            alt="Companys logo"
           />
         </div>
 

@@ -41,10 +41,11 @@ function RegisterPage() {
       <div className="bg-white shadow-md rounded-lg max-w-md w-full mx-auto p-8">
         {/* Logo y título */}
         <div className="flex justify-center mb-8">
-        <Image src="/ecocasa.png"
-          width={200}
-          height={200}
-          alt="Companys logo"
+          <Image
+            src="/ecocasa.png"
+            width={200}
+            height={200}
+            alt="Companys logo"
           />
         </div>
 
