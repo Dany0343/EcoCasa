@@ -19,7 +19,7 @@ async function Navbar() {
             </li>
             <li>
               <Link className="font-semibold" href={"/auth/login"}>
-                Iniciar Sesión
+                Iniciar sesión
               </Link>
             </li>
             <li>
@@ -37,7 +37,7 @@ async function Navbar() {
             </li>
             <li>
               <Link className="font-semibold" href={"/api/auth/signout"}>
-                Logout
+                Cerrar sesión
               </Link>
             </li>
           </>

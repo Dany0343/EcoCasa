@@ -46,6 +46,7 @@ function RegisterPage() {
             width={200}
             height={200}
             alt="Companys logo"
+            className="rounded-lg"
           />
         </div>
 
