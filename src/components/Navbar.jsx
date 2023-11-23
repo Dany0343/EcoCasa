@@ -31,10 +31,14 @@ async function Navbar() {
         ) : (
           <>
             <li>
-              <Link className="font-semibold" href={"/"}>Home Page</Link>
+              <Link className="font-semibold" href={"/"}>
+                Home Page
+              </Link>
             </li>
             <li>
-              <Link className="font-semibold" href={"/api/auth/signout"}>Logout</Link>
+              <Link className="font-semibold" href={"/api/auth/signout"}>
+                Logout
+              </Link>
             </li>
           </>
         )}
