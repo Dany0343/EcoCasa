@@ -32,12 +32,13 @@ model Property {
   bathrooms    Int
   area         Float
   availability Boolean
-  userId       Int
-  user         User      @relation(fields: [userId], references: [id])
+  userId       Int?
+  user         User?      @relation(fields: [userId], references: [id])
   reviews      Review[]
   images       Image[]
   favorites    Favorite[]
   messages     Message[]
+  linkImage    String
 }
 
 model Review {
