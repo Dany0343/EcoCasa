@@ -40,6 +40,11 @@ async function Navbar() {
                 Cerrar sesión
               </Link>
             </li>
+            <li>
+              <Link className="font-semibold" href="../profile">
+                Mi perfil
+              </Link>
+            </li>
           </>
         )}
       </ul>

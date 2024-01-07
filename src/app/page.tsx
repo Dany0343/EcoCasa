@@ -33,7 +33,7 @@ export default function Home() {
           </div>
 
           {/* Dropdowns de filtros */}
-          <div className="flex flex-col md:flex-row w-full gap-4">
+          <div className="flex flex-col ml-3 md:flex-row w-full gap-4">
             <select className="form-select border p-2 rounded w-full">
               <option>Terreno</option>
               <option>Construcción</option>
@@ -61,20 +61,48 @@ export default function Home() {
         {/* Contenedor de tarjetas de propiedades */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
           {/* Tarjetas de propiedades, reemplazar con mapeo de datos */}
+
           {/* Tarjeta 1 */}
+          {/* Nueva card */}
           <div className="bg-white p-4 rounded-md shadow-md">
+            {/* Asumiendo que images[0] tiene la imagen de la propiedad */}
             <Image
-              src="/ecocasa_stock2.png"
-              alt="Casa"
+              src="/ecocasa_stock1.png"
+              alt={"A house"}
               width={200}
               height={200}
               layout="responsive"
             />
             <div className="p-2">
-              <h2 className="text-lg font-semibold mt-2">Casa en Pre-venta</h2>
-              {/* Añadir más detalles de la propiedad */}
+              {/* Título de la propiedad */}
+              <h2 className="text-lg font-semibold mt-2">{"Casa"}</h2>
+
+              {/* Descripción de la propiedad */}
+              <p className="text-gray-600 mt-2">{"Description"}</p>
+
+              {/* Información adicional en un diseño limpio y atractivo */}
+              <div className="flex flex-wrap text-sm text-gray-800 mt-3">
+                {/* Precio */}
+                <div className="w-full sm:w-1/2 mb-2 sm:mb-0">
+                  <strong>Precio:</strong> ${"Price"}
+                </div>
+
+                {/* Ubicación */}
+                <div className="w-full sm:w-1/2">
+                  <strong>Ubicación:</strong> {"Location"}
+                </div>
+
+                {/* Habitaciones y Baños en línea para pantallas pequeñas y medianas */}
+                <div className="w-1/2 sm:w-1/4 mt-2 sm:mt-0">
+                  <strong>Habitaciones:</strong> {"Bedrooms"}
+                </div>
+                <div className="w-1/2 sm:w-1/4">
+                  <strong>Baños:</strong> {"Bathrooms"}
+                </div>
+              </div>
             </div>
           </div>
+
           <div className="bg-white p-4 rounded-md shadow-md">
             <Image
               src="/ecocasa_stock3.png"
