@@ -2,10 +2,11 @@
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-// import {GoogleMap, useLoadScript, Marker} from
+import { useEffect, useState } from "react";
+import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 import Modal from "react-modal";
 import axios from "axios";
+import Head from "next/head"
 
 export default function House() {
   // Se usa el hook
@@ -24,6 +25,28 @@ export default function House() {
   const phone = searchParams.get("phone");
 
   const [showModal, setShowModal] = useState(false);
+  const [position, setPosition] = useState(null)
+  
+
+  // useEffect(() => {
+  //   // Se crea una instancia del servicio de geocodificación
+  //   const geocoder = new google.maps.Geocoder();
+  //   // Se llama al método geocode con la dirección
+  //   geocoder.geocode({ address: location }, (results, status) => {
+  //     // Se comprueba si la respuesta fue exitosa
+  //     if (status === "OK") {
+  //       // Se obtiene el primer resultado, que es el más relevante
+  //       const result = results[0];
+  //       // Se obtiene el objeto con las coordenadas
+  //       const position = result.geometry.location;
+  //       // Se actualiza el estado con el objeto
+  //       setPosition(position);
+  //     } else {
+  //       // Se muestra un mensaje de error
+  //       console.error("No se pudo obtener las coordenadas de la dirección");
+  //     }
+  //   });
+  // }, [location]);
 
   return (
     <div className="flex flex-col md:flex-row gap-6 md:gap-12 max-w-6xl mx-auto p-4 md:p-6">
@@ -107,6 +130,13 @@ export default function House() {
             </div>
           </div>
         </Modal>
+        {/* Mapa */}
+        
+        {/* <APIProvider apiKey="AIzaSyChUo6LNDciyP9jMwrf3HxMfFm6_bMWcJs">
+          <Map center={position} zoom={10}>
+            <Marker position={position}/>
+          </Map>
+        </APIProvider> */}
       </div>
     </div>
   );
