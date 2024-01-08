@@ -10,14 +10,15 @@ function Card({
   bathrooms,
   area,
   availability,
+  linkImage,
 }) {
   return (
     <div className="bg-white p-4 rounded-md shadow-md">
       {/* Imagen de la propiedad */}
       <div className="mb-4">
         <Image
-          src="/ecocasa_stock1.png"
-          alt="A house"
+          src={linkImage}
+          alt={title}
           width={200}
           height={200}
           layout="responsive"
