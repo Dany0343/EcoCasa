@@ -47,7 +47,9 @@ export default function Home() {
         : true) &&
       (filters.bathrooms
         ? house.bathrooms === parseInt(filters.bathrooms)
-        : true)
+        : true) &&
+      // Agregar esta línea
+      (house.availability ? true : false)
     );
   });
 

@@ -39,6 +39,7 @@ model Property {
   favorites    Favorite[]
   messages     Message[]
   linkImage    String
+  phone        String @default("0")
 }
 
 model Review {

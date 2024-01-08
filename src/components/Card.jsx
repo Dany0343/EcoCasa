@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 function Card({
+  id,
   title,
   description,
   price,
@@ -11,17 +12,22 @@ function Card({
   area,
   availability,
   linkImage,
+  phone,
 }) {
   return (
     <div className="bg-white p-4 rounded-md shadow-md">
       {/* Imagen de la propiedad */}
       <div className="mb-4">
         <Image
+          alt={description}
+          className="object-cover w-full rounded-lg"
+          height="300"
           src={linkImage}
-          alt={title}
-          width={200}
-          height={200}
-          layout="responsive"
+          style={{
+            aspectRatio: "500/500",
+            objectFit: "cover",
+          }}
+          width="300"
         />
       </div>
 
@@ -60,6 +66,11 @@ function Card({
         <div>
           <strong>Disponibilidad:</strong>{" "}
           {availability ? "Está disponible" : "No está disponible"}
+        </div>
+        {/* Area */}
+        <div>
+          <strong>Area:</strong>{" "}
+          {area + "m2"}
         </div>
       </div>
     </div>

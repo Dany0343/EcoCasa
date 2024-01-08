@@ -1,6 +1,6 @@
-// import { NextResponse } from "next/server";
-// import { Prisma } from "prisma/prisma-client";
-// import { prisma } from "../../../../libs/db";
+import { NextResponse } from "next/server";
+import { Prisma } from "prisma/prisma-client";
+import { prisma } from "../../../../libs/db";
 
 // export async function GET(
 //   request: Request,
@@ -86,40 +86,32 @@
 //   }
 // }
 
-// export async function PUT(
-//   request: Request,
-//   { params }: { params: { id: string } }
-// ) {
-//   try {
-//     const { title, description, price,location, propertyType, bedrooms, bathrooms, area, availability } = await request.json();
-//     const updatedhouse = await prisma.property.update({
-//       where: {
-//         id: Number(params.id),
-//       },
-//       data: {
-//         title,
-//         description,
-//         price,
-//         location,
-//         propertyType,
-//         bedrooms,
-//         bathrooms,
-//         area,
-//         availability
-//       },
-//     });
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { title, description, price,location, propertyType, bedrooms, bathrooms, area, availability } = await request.json();
+    const updatedhouse = await prisma.property.update({
+      where: {
+        id: Number(params.id),
+      },
+      data: {
+        availability
+      },
+    });
 
-//     return NextResponse.json(updatedhouse);
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       return NextResponse.json(
-//         {
-//           message: error.message,
-//         },
-//         {
-//           status: 500,
-//         }
-//       );
-//     }
-//   }
-// }
+    return NextResponse.json(updatedhouse);
+  } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json(
+        {
+          message: error.message,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+  }
+}

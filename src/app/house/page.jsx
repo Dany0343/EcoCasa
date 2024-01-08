@@ -2,29 +2,37 @@
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+// import {GoogleMap, useLoadScript, Marker} from
+import Modal from "react-modal";
+import axios from "axios";
 
 export default function House() {
   // Se usa el hook
   const searchParams = useSearchParams();
 
-
+  const id = searchParams.get("id");
   const title = searchParams.get("title");
   const location = searchParams.get("location");
   const propertyType = searchParams.get("propertyType");
   const description = searchParams.get("description");
   const bedrooms = searchParams.get("bedrooms");
   const bathrooms = searchParams.get("bathrooms");
-  const area = searchParams.get("area")
-  const availability = searchParams.get("availability")
+  const area = searchParams.get("area");
+  const availability = searchParams.get("availability");
+  const linkImage = searchParams.get("linkImage");
+  const phone = searchParams.get("phone");
+
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="flex flex-col md:flex-row gap-6 md:gap-12 max-w-6xl mx-auto p-4 md:p-6">
       <div className="w-full md:w-1/2">
         <Image
-          alt="House Image"
+          alt={description}
           className="object-cover w-full rounded-lg"
           height="500"
-          src="/placeholder.svg"
+          src={linkImage}
           style={{
             aspectRatio: "500/500",
             objectFit: "cover",
@@ -57,10 +65,48 @@ export default function House() {
             <span>{availability ? "Disponible" : "No disponible"}</span>
           </div>
         </div>
-        <p className="text-gray-500">
-          {description}
-        </p>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Comprar</button>
+        <p className="text-gray-500">{description}</p>
+        <button
+          onClick={async () => {
+            setShowModal(true);
+            await axios.put(`/api/houses/${id}`, { availability: false });
+          }}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Comprar
+        </button>
+        <Modal
+          isOpen={showModal}
+          onRequestClose={() => setShowModal(false)}
+          className="fixed inset-0 z-10 overflow-y-auto"
+        >
+          <div className="flex items-center justify-center min-h-screen px-4 text-center">
+            <div
+              className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+              aria-hidden="true"
+            ></div>
+            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-xl">
+              <h2 className="text-xl font-bold text-gray-900">
+                Gracias por el interes, para concretar la compra debes contactar
+                al vendedor
+              </h2>
+              <h2 className="mt-2 text-xl font-bold text-gray-900">
+                Ahora la casa esta apartada.
+              </h2>
+              <p className="mt-4 text-gray-600">
+                El número de teléfono del vendedor es: {phone}
+              </p>
+              <Link href={"/"}>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  Cerrar
+                </button>
+              </Link>
+            </div>
+          </div>
+        </Modal>
       </div>
     </div>
   );
