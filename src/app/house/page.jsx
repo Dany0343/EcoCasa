@@ -131,12 +131,6 @@ export default function House() {
           </div>
         </Modal>
         {/* Mapa */}
-        
-        {/* <APIProvider apiKey="AIzaSyChUo6LNDciyP9jMwrf3HxMfFm6_bMWcJs">
-          <Map center={position} zoom={10}>
-            <Marker position={position}/>
-          </Map>
-        </APIProvider> */}
       </div>
     </div>
   );
